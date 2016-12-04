@@ -27,13 +27,13 @@ if [ ! -d "${PACKAGE_DIR}/lcm/${LCM_VERSION}" ] ; then
 fi
 
 cd ${BUILD_LOC}
-cp -rf ${PACKAGE_DIR}/lcm/${LCM_VERSION}/* ${BUILD_LOC}
+#cp -rf ${PACKAGE_DIR}/lcm/${LCM_VERSION}/* ${BUILD_LOC}
 
 
 
 # LCM configure step
 echo -e "   START CONFIGURE AND MAKE "
-configure --prefix=$LCM_DIR &> configure_lcm.out
+${PACKAGE_DIR}/lcm/${LCM_VERSION}/configure --prefix=$LCM_DIR &> configure_lcm.out
 make
 make install
 echo -e "   END CONFIGURE AND MAKE "
