@@ -27,6 +27,7 @@ STD_SCRIPTS_DIR=${PACKAGE_DIR}/scripts/std
 echo -e "\nSTD_SCRIPTS_DIR = $STD_SCRIPTS_DIR"
 
 # LCM
+echo $BUILD_LCM
 if [ "${BUILD_LCM}" != "" ] ; then
   ${STD_SCRIPTS_DIR}/lcm.sh
 fi
