@@ -1,0 +1,18 @@
+# this file is intended to be "sourced" only
+
+#LCM LOCAL INSTALL ============================================
+BASE_DIR=LocalApps
+export PATH="$HOME/$BASE_DIR/bin:$PATH"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/$BASE_DIR/lib"
+if [ "${LCM_LIB}" == "" ] ; then
+  export LCM_LIB=$HOME/$BASE_DIR/lib
+fi
+if [ "${LCM_INC}" == "" ] ; then
+  export LCM_INC=$HOME/$BASE_DIR/include
+fi
+if [ "${LCM_FLAGS}" == "" ] ; then
+  export LCM_FLAGS="-I$LCM_INC -L$LCM_LIB -llcm"
+fi
+#LCM ===========================================================
+
+echo -e "\n ~ set up LCM ~ \n"

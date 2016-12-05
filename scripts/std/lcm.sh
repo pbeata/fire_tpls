@@ -34,8 +34,8 @@ cd ${BUILD_LOC}
 # LCM configure step
 echo -e "   START CONFIGURE AND MAKE "
 ${PACKAGE_DIR}/lcm/${LCM_VERSION}/configure --prefix=$LCM_DIR &> configure_lcm.out
-make
-make install
+make &> make_lcm.out
+make install &> make_install_lcm.out
 echo -e "   END CONFIGURE AND MAKE "
 
 
@@ -51,17 +51,19 @@ echo 'export LCM_LIB=$LCM_DIR/lib' >> $BASH_TPL
 echo 'export LCM_INC=$LCM_DIR/include' >> $BASH_TPL
 echo 'export LCM_FLAGS="-I$LCM_INC -L$LCM_LIB -llcm"' >> $BASH_TPL
 
-if [ ! -f $HOME/$BASH_TPL ]; then
-  cp $BASH_TPL $HOME
+#if [ ! -f $HOME/$BASH_TPL ] ; then
+cp -rf $BASH_TPL $HOME
+#fi
 
+CHECK_BASHRC=`grep -c "source .bashrc_lcm" $HOME/.bashrc`
+if [ $CHECK_BASHRC == 0 ] ; then
 # add new line to end of .bashrc
   echo ' ' >> $HOME/.bashrc
   echo '# LCM' >> $HOME/.bashrc
-
 # add new line to end of .bashrc
   echo source $BASH_TPL >> $HOME/.bashrc
   echo ' ' >> $HOME/.bashrc
-
+# finished modifying the .bashrc file
   echo -e "\n ***warning: modified $HOME/.bashrc with 2 new lines***"
 fi
 
