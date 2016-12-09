@@ -62,6 +62,9 @@ if [ `grep -c "$BASH_TPL" $HOME/.bashrc` -eq "0" ] ; then
   echo -e "\n ***warning: modified $HOME/.bashrc with 2 new lines***"
 fi
 
+# source the new environment variables for the current shell
+source $HOME/$BASH_TPL
+
 # exit the lcm.sh script once completed! 
 echo -e "\n ~ lcm.sh completed ~ \n"
 
