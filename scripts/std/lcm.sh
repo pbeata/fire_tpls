@@ -51,21 +51,17 @@ echo 'export LCM_LIB=$LCM_DIR/lib' >> $BASH_TPL
 echo 'export LCM_INC=$LCM_DIR/include' >> $BASH_TPL
 echo 'export LCM_FLAGS="-I$LCM_INC -L$LCM_LIB -llcm"' >> $BASH_TPL
 
-#if [ ! -f $HOME/$BASH_TPL ] ; then
+# copy the new .bashrc_TPL file back to the user's $HOME directory
 cp -rf $BASH_TPL $HOME
-#fi
 
-CHECK_BASHRC=`grep -c "source .bashrc_lcm" $HOME/.bashrc`
-if [ $CHECK_BASHRC == 0 ] ; then
-# add new line to end of .bashrc
-  echo ' ' >> $HOME/.bashrc
+# only add the "source" command to the main .bashrc if it does not exist
+if [ `grep -c "$BASH_TPL" $HOME/.bashrc` -eq "0" ] ; then
   echo '# LCM' >> $HOME/.bashrc
-# add new line to end of .bashrc
-  echo source $BASH_TPL >> $HOME/.bashrc
+  echo source $HOME/$BASH_TPL >> $HOME/.bashrc
   echo ' ' >> $HOME/.bashrc
-# finished modifying the .bashrc file
   echo -e "\n ***warning: modified $HOME/.bashrc with 2 new lines***"
 fi
 
+# exit the lcm.sh script once completed! 
 echo -e "\n ~ lcm.sh completed ~ \n"
 
