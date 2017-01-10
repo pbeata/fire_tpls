@@ -1,0 +1,11 @@
+01-10-2017
+
+Reached a new error when installing LCM on a clean Ubuntu machine:
+1. LCM required packages include build-essential and libglib2.0-dev
+2. LCM strongly recommends packages openjdk-6-jdk and python-dev
+
+01-10-2017
+
+Once finished with the installation of a particuar TPL, it is important to remember this command:
+$ source $HOME/.bashrc_<TPL>
+
